@@ -30,24 +30,33 @@ class Blog(db.Model):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        all_posts = db.GqlQuery("SELECT * FROM Blog")
         t = jinja_env.get_template("main-page.html")
-        page = t.render()
+        page = t.render(blogpots = all_posts)
         self.response.write(page)
 
-class NewPost(webapp2.RequestHandler):
+class NewPost(MainHandler):
     def get(self):
         t = jinja_env.get_template("newpost.html")
         page = t.render()
         self.response.write(page)
 
-class PostSuccess(webapp2.RequestHandler):
     def post(self):
-        t = jinja_env.get_template("singlepost.html")
-        page = t.render()
-        self.response.write(page)
+        subject_text = self.request.get("subject_text")
+        blog_entry = self.request.get("blog_entry")
+
+
+        escaped_subject = cgi.escape(subject_text, quote=True)
+        escaped_blog = cgi.escape(blog_entry, quote=True)
+
+        blog_list = Blog(subject = escaped_subject, blogpost = escaped_blog)
+        blog_list.put()
+
+        t = jinja_env.get_template("main-page.html")
+        content = t.render(subject_text = subject_text, blog_entry = blog_entry)
+        self.response.write(content)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/newpost', NewPost),
-    ('/singlepost', PostSuccess)
+    ('/newpost', NewPost)
 ], debug=True)

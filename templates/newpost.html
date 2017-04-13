@@ -3,10 +3,10 @@
 {% block content %}
   <p>New Post</p>
 
-  <form action="/singlepost" method="post">
+  <form action="/">
     <label>
       <b>Subject</b><br>
-      <input type="text" value=""/>
+      <input type="text" name="subject_text">
     </label>
     <br>
     <br>
@@ -14,12 +14,12 @@
     <label>
       <b>Blog</b>
       <br>
-      <textarea rows="4" cols="50" name="comment"></textarea>
-    <lable>
+      <textarea rows="30" cols="100" name="blog_entry"></textarea>
+    </lable>
     <br>
-    <input type="submit" value="Submit"/>
+    <input type="submit" value="Submit">
     <br>
-    <span class="error">error goes here</span>
   </form>
+
 
 {% endblock %}
