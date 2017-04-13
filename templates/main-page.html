@@ -3,13 +3,13 @@
 {% block content %}
 
 
-{% for blogpost in blogposts %}
-    <h1>{{ blogpost.subject }}</h1>
+{% for blogpost in all_posts %}
     <br>
-    {{ blogpost.blogpost }}
+    <span value="{{ blogpost.key().id() }}">{{ blogpost.subject }}
     <br>
 
 {% endfor %}
+
   <form action="/newpost">
     <input type="submit" value="Create Post"/>
   </form>

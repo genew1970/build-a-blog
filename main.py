@@ -32,7 +32,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         all_posts = db.GqlQuery("SELECT * FROM Blog")
         t = jinja_env.get_template("main-page.html")
-        page = t.render(blogpots = all_posts)
+        page = t.render(subject = subject, blogpost = blogpost, created = created)
         self.response.write(page)
 
 class NewPost(MainHandler):
