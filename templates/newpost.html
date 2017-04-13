@@ -1,7 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <p>New Post</p>
 
+  <form action="/post-success" method="post">
+    <label>
+      <b>Subject</b><br>
+      <input type="text" value=""/>
+    </label>
+    <br>
+    <br>
 
+    <label>
+      <b>Blog</b>
+      <br>
+      <textarea rows="4" cols="50" name="comment"></textarea>
+    <lable>
+    <br>
+    <input type="submit" value="Submit"/>
+    <br>
+    <span class="error">error goes here</span>
+  </form>
 
 {% endblock %}
