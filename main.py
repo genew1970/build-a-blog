@@ -42,12 +42,12 @@ class NewPost(webapp2.RequestHandler):
 
 class PostSuccess(webapp2.RequestHandler):
     def post(self):
-        t = jinja_env.get_template("post-success.html")
+        t = jinja_env.get_template("singlepost.html")
         page = t.render()
         self.response.write(page)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/newpost', NewPost),
-    ('/post-success', PostSuccess)
+    ('/singlepost', PostSuccess)
 ], debug=True)
