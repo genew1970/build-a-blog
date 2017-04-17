@@ -3,10 +3,10 @@
 {% block content %}
   <p>New Post</p>
 
-  <form action="/">
+  <form action="/newpost" method="post">
     <label>
       <b>Subject</b><br>
-      <input type="text" name="subject_text">
+      <input type="text" name="subject_text" value="{{ subject }}">
     </label>
     <br>
     <br>
@@ -14,9 +14,10 @@
     <label>
       <b>Blog</b>
       <br>
-      <textarea rows="30" cols="100" name="blog_entry"></textarea>
+      <textarea rows="30" cols="100" name="blog_entry">{{ blogpost }}</textarea>
     </lable>
     <br>
+    <p class="error">{{ error }}</p>
     <input type="submit" value="Submit">
     <br>
   </form>

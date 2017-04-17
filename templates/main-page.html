@@ -3,11 +3,12 @@
 {% block content %}
 
 
-{% for blogpost in all_posts %}
+{% for post in all_posts %}
     <br>
-    <span value="{{ blogpost.key().id() }}">{{ blogpost.subject }}
+    <p><h2><a href="/blog/{{ post.key().id() }}">{{ post.subject }}</a></h2></p>
+    <p>{{ post.blogpost }}</p>
+    <footer>Created {{ post.created }}</footer>
     <br>
-
 {% endfor %}
 
   <form action="/newpost">
